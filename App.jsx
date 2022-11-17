@@ -2,16 +2,20 @@ import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import NavigationContainer from "./components/NavigationContainer";
+import { QueryClient, QueryClientProvider } from "react-query";
+import Main from "./components/Main";
 
+const queryClient = new QueryClient();
 export default function App() {
   return (
     <SafeAreaProvider>
       <PaperProvider>
-        <View>
-          <NavigationContainer />
-          <StatusBar style="auto" />
-        </View>
+        <QueryClientProvider client={queryClient}>
+          <View>
+            <Main />
+            <StatusBar style="auto" />
+          </View>
+        </QueryClientProvider>
       </PaperProvider>
     </SafeAreaProvider>
   );
