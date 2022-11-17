@@ -14,7 +14,11 @@ export default function ReportsScreen() {
     <ScrollView>
       <Text
         variant="displayMedium"
-        style={{ textAlign: "center", paddingBottom: 8 }}
+        style={{
+          color: "white",
+          textAlign: "center",
+          paddingBottom: 8,
+        }}
       >
         Reports
       </Text>

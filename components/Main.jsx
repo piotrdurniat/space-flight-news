@@ -7,7 +7,9 @@ export default function Main() {
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={{ padding: 8, paddingTop: insets.top }}>
+    <View
+      style={{ padding: 8, paddingTop: insets.top, backgroundColor: "#246468" }}
+    >
       <ReportsScreen />
     </View>
   );

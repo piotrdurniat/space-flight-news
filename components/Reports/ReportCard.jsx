@@ -10,16 +10,16 @@ const ReportCard = ({
   const publishedAtStr = formatDate(new Date(publishedAt));
 
   return (
-    <Card style={{ marginBottom: 8 }}>
-      <Card.Content>
+    <Card style={{ marginBottom: 16 }}>
+      <Card.Content style={{ marginBottom: 16 }}>
         <Title style={{ textAlign: "center" }}>{title}</Title>
       </Card.Content>
-      <Card.Cover source={{ uri: imageUrl }} />
+      <Card.Cover style={{ marginBottom: 16 }} source={{ uri: imageUrl }} />
       <Card.Content>
         <Paragraph>{summary}</Paragraph>
         <Text
           variant="labelMedium"
-          style={{ marginTop: 8 }}
+          style={{ marginTop: 16 }}
         >{`Published at: ${publishedAtStr}`}</Text>
         <Text variant="labelMedium">{`Updated at: ${updatedAtStr}`}</Text>
       </Card.Content>

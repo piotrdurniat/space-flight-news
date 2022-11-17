@@ -13,7 +13,7 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
           <View>
             <Main />
-            <StatusBar style="auto" />
+            <StatusBar style="light" />
           </View>
         </QueryClientProvider>
       </PaperProvider>
