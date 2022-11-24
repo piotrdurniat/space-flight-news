@@ -9,8 +9,9 @@ import Foundation from "react-native-vector-icons/Foundation";
 // Screens
 import ArticlesScreen from "./ArticlesScreen";
 import BlogsScreen from "./BlogsScreen";
-import ReportsScreen from "./ReportsScreen";
+import ReportsScreen from "./Reports/ReportsScreen";
 import LaunchesScreen from "./LaunchesScreen";
+import { View } from "react-native";
 
 //Screen names
 const launchesName = "Launches";
@@ -26,7 +27,7 @@ function NavigationBar() {
       <Tab.Navigator
         initialRouteName={launchesName}
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
+          tabBarIcon: ({ _, color, size }) => {
             let iconName;
             let rn = route.name;
 
