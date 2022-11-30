@@ -7,7 +7,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Foundation from "react-native-vector-icons/Foundation";
 
 // Screens
-import ArticlesScreen from "./ArticlesScreen";
+import ArticlesScreen from "./Articles/ArticlesScreen";
 import BlogsScreen from "./BlogsScreen";
 import ReportsScreen from "./Reports/ReportsScreen";
 import LaunchesScreen from "./LaunchesScreen";
@@ -36,21 +36,13 @@ function NavigationBar() {
               return <Ionicons name={iconName} size={size} color={color} />;
             } else if (rn === articlesName) {
               iconName = "article";
-              return (
-                <MaterialIcons name={iconName} size={size} color={color} />
-              );
+              return <MaterialIcons name={iconName} size={size} color={color} />;
             } else if (rn === blogsName) {
               iconName = "social-blogger";
               return <Foundation name={iconName} size={size} color={color} />;
             } else if (rn === reportsName) {
               iconName = "bell-ring";
-              return (
-                <MaterialCommunityIcons
-                  name={iconName}
-                  size={size}
-                  color={color}
-                />
-              );
+              return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
             }
           },
           tabBarActiveTintColor: "white",
