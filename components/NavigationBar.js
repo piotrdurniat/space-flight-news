@@ -8,7 +8,7 @@ import Foundation from "react-native-vector-icons/Foundation";
 
 // Screens
 import ArticlesScreen from "./Articles/ArticlesScreen";
-import BlogsScreen from "./BlogsScreen";
+import BlogsScreen from "./Blogs/BlogsScreen";
 import ReportsScreen from "./Reports/ReportsScreen";
 import LaunchesScreen from "./LaunchesScreen";
 import { View } from "react-native";
