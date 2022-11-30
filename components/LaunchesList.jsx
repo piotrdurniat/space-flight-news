@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Text } from "react-native-paper";
 import { useQuery } from "react-query";
-import { Launches } from "../../api/Lauches";
+import { Launches } from "../api/Lauches";
 
 const LaunchesList = ({ launchIds }) => {
   const launches = useQuery(["launches", launchIds], async () => {

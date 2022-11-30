@@ -4,8 +4,8 @@ import * as Linking from "expo-linking";
 import { formatDate } from "../../util/formatter";
 import LaunchesList from "../LaunchesList";
 
-const ArticleCard = ({
-  article: { title, imageUrl, summary, publishedAt, updatedAt, url, launches },
+const BlogCard = ({
+  blog: { title, imageUrl, summary, publishedAt, updatedAt, url, launches },
 }) => {
   const updatedAtStr = formatDate(new Date(updatedAt));
   const publishedAtStr = formatDate(new Date(publishedAt));
@@ -32,4 +32,4 @@ const ArticleCard = ({
   );
 };
 
-export default ArticleCard;
+export default BlogCard;
