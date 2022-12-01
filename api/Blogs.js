@@ -5,7 +5,7 @@ export class Blogs {
     return SpaceFlightNewsApi.get("v3/blogs/");
   }
   static getById(id) {
-    return SpaceFlightNewsApi.get(`v3/blogs/${id}`);
+    return SpaceFlightNewsApi.get(`v3/blogs/${id}/`);
   }
   static searchBySummary(query) {
     return SpaceFlightNewsApi.get("v3/blogs/", {

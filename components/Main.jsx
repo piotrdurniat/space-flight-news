@@ -1,22 +1,22 @@
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import ReportsScreen from "./Reports/ReportsScreen";
+import { View } from "react-native";
 import NavigationBar from "./NavigationBar";
-import insets from "react-native/Libraries/Components/Touchable/Position";
+import theme from "./theme";
 
 export default function Main() {
   const insets = useSafeAreaInsets();
 
   return (
-      <View style={styles.container}>
-        <NavigationBar/>
-      </View>
+    <View
+      style={{
+        flex: 1,
+        paddingTop: insets.top,
+        paddingBottom: insets.bottom,
+        backgroundColor: theme.colors.background,
+      }}
+    >
+      <NavigationBar />
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-       flex: 1
-  },
-})

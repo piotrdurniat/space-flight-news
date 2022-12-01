@@ -7,10 +7,10 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Foundation from "react-native-vector-icons/Foundation";
 
 // Screens
-import ArticlesScreen from "./ArticlesScreen";
-import BlogsScreen from "./BlogsScreen";
-import ReportsScreen from "./ReportsScreen";
-import LaunchesScreen from "./LaunchesScreen";
+import ArticlesScreen from "./Articles/ArticlesScreen";
+import BlogsScreen from "./Blogs/BlogsScreen";
+import ReportsScreen from "./Reports/ReportsScreen";
+import LaunchesScreen from "./Launches/LaunchesScreen";
 
 //Screen names
 const launchesName = "Launches";
@@ -26,7 +26,7 @@ function NavigationBar() {
       <Tab.Navigator
         initialRouteName={launchesName}
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
+          tabBarIcon: ({ _, color, size }) => {
             let iconName;
             let rn = route.name;
 
@@ -35,21 +35,13 @@ function NavigationBar() {
               return <Ionicons name={iconName} size={size} color={color} />;
             } else if (rn === articlesName) {
               iconName = "article";
-              return (
-                <MaterialIcons name={iconName} size={size} color={color} />
-              );
+              return <MaterialIcons name={iconName} size={size} color={color} />;
             } else if (rn === blogsName) {
               iconName = "social-blogger";
               return <Foundation name={iconName} size={size} color={color} />;
             } else if (rn === reportsName) {
               iconName = "bell-ring";
-              return (
-                <MaterialCommunityIcons
-                  name={iconName}
-                  size={size}
-                  color={color}
-                />
-              );
+              return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
             }
           },
           tabBarActiveTintColor: "white",

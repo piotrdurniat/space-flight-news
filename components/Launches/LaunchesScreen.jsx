@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { Text } from "react-native-paper";
 import { Launches } from "../../api/Launches";
 import LaunchesCard from "./LaunchesCard";
+import theme from "../theme";
 
 export default function LaunchesScreen() {
   const launches = useQuery(["launches"], async () => {
@@ -11,7 +12,7 @@ export default function LaunchesScreen() {
   });
 
   return (
-    <ScrollView>
+    <ScrollView style={{ padding: 8, backgroundColor: theme.colors.background }}>
       <Text
         variant="displayMedium"
         style={{
@@ -20,16 +21,14 @@ export default function LaunchesScreen() {
           paddingBottom: 8,
         }}
       >
-        Reports
+        Launches
       </Text>
       {launches.isError && <Text>Error fetching reports.</Text>}
 
       {launches.isLoading ? (
         <Text>Loading...</Text>
       ) : (
-        launches.data.results.map((launch, index) => (
-          <LaunchesCard launch={launch} key={index} />
-        ))
+        launches.data.results.map((launch, index) => <LaunchesCard launch={launch} key={index} />)
       )}
     </ScrollView>
   );
