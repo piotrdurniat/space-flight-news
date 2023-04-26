@@ -9,7 +9,9 @@ export default function LaunchesScreen() {
   const launches = useQuery(["launches"], Launches.getAllUpcoming);
 
   return (
-    <ScrollView style={{ padding: 8, backgroundColor: theme.colors.background }}>
+    <ScrollView
+      style={{ padding: 8, backgroundColor: theme.colors.background }}
+    >
       <Text
         variant="displayMedium"
         style={{
@@ -18,7 +20,7 @@ export default function LaunchesScreen() {
           paddingBottom: 8,
         }}
       >
-        Launches
+        Launches - test
       </Text>
       {launches.isError ? (
         <Text>Error fetching launches.</Text>
@@ -27,7 +29,9 @@ export default function LaunchesScreen() {
       ) : launches.data.results.length === 0 ? (
         <Text>No launches found.</Text>
       ) : (
-        launches.data.results.map((launch, index) => <LaunchesCard launch={launch} key={index} />)
+        launches.data.results.map((launch, index) => (
+          <LaunchesCard launch={launch} key={index} />
+        ))
       )}
     </ScrollView>
   );
