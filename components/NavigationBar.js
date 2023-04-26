@@ -1,4 +1,3 @@
-import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -10,8 +9,7 @@ import Foundation from "react-native-vector-icons/Foundation";
 import ArticlesScreen from "./Articles/ArticlesScreen";
 import BlogsScreen from "./Blogs/BlogsScreen";
 import ReportsScreen from "./Reports/ReportsScreen";
-import LaunchesScreen from "./LaunchesScreen";
-import { View } from "react-native";
+import LaunchesScreen from "./Launches/LaunchesScreen";
 
 //Screen names
 const launchesName = "Launches";
@@ -28,21 +26,15 @@ function NavigationBar() {
         initialRouteName={launchesName}
         screenOptions={({ route }) => ({
           tabBarIcon: ({ _, color, size }) => {
-            let iconName;
-            let rn = route.name;
-
-            if (rn === launchesName) {
-              iconName = "rocket";
-              return <Ionicons name={iconName} size={size} color={color} />;
-            } else if (rn === articlesName) {
-              iconName = "article";
-              return <MaterialIcons name={iconName} size={size} color={color} />;
-            } else if (rn === blogsName) {
-              iconName = "social-blogger";
-              return <Foundation name={iconName} size={size} color={color} />;
-            } else if (rn === reportsName) {
-              iconName = "bell-ring";
-              return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
+            switch (route.name) {
+              case launchesName:
+                return <Ionicons name="rocket" size={size} color={color} />;
+              case articlesName:
+                return <MaterialIcons name="article" size={size} color={color} />;
+              case blogsName:
+                return <Foundation name="social-blogger" size={size} color={color} />;
+              case reportsName:
+                return <MaterialCommunityIcons name="bell-ring" size={size} color={color} />;
             }
           },
           tabBarActiveTintColor: "white",

@@ -1,6 +1,5 @@
-import * as React from "react";
 import { Text, Button, Card, Title, Paragraph } from "react-native-paper";
-import * as Linking from "expo-linking";
+import Linking from "expo-linking";
 import { formatDate } from "../../util/formatter";
 import LaunchesList from "../LaunchesList";
 
@@ -23,7 +22,7 @@ const ArticleCard = ({
           style={{ marginTop: 16 }}
         >{`Published at: ${publishedAtStr}`}</Text>
         <Text variant="labelMedium">{`Updated at: ${updatedAtStr}`}</Text>
-        {launches.length !== 0 && <LaunchesList launchIds={launches} />}
+        {launches?.length !== 0 && <LaunchesList launchIds={launches} />}
       </Card.Content>
       <Card.Actions>
         <Button onPress={() => Linking.openURL(url)}>Read more</Button>

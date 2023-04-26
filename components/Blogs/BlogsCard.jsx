@@ -1,6 +1,5 @@
-import * as React from "react";
 import { Text, Button, Card, Title, Paragraph } from "react-native-paper";
-import * as Linking from "expo-linking";
+import Linking from "expo-linking";
 import { formatDate } from "../../util/formatter";
 import LaunchesList from "../LaunchesList";
 
@@ -18,11 +17,10 @@ const BlogCard = ({
       <Card.Cover style={{ marginBottom: 16 }} source={{ uri: imageUrl }} />
       <Card.Content>
         <Paragraph>{summary}</Paragraph>
-        <Text
-          variant="labelMedium"
-          style={{ marginTop: 16 }}
-        >{`Published at: ${publishedAtStr}`}</Text>
-        <Text variant="labelMedium">{`Updated at: ${updatedAtStr}`}</Text>
+        <Text variant="labelMedium" style={{ marginTop: 16 }}>
+          Published at: {publishedAtStr}
+        </Text>
+        <Text variant="labelMedium">Updated at: {updatedAtStr}</Text>
         {launches.length !== 0 && <LaunchesList launchIds={launches} />}
       </Card.Content>
       <Card.Actions>

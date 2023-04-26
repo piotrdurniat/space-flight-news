@@ -1,24 +1,36 @@
 import SpaceFlightNewsApi from "./SpaceFlightNewsApi";
 
 export class Blogs {
-  static getAll() {
-    return SpaceFlightNewsApi.get("v3/blogs/");
+  static async getAll() {
+    const { data } = await SpaceFlightNewsApi.get("v3/blogs/");
+    return data;
   }
-  static getById(id) {
-    return SpaceFlightNewsApi.get(`v3/blogs/${id}/`);
+
+  static async getById(id) {
+    const { data } = await SpaceFlightNewsApi.get(`v3/blogs/${id}/`);
+    return data;
   }
-  static searchBySummary(query) {
-    return SpaceFlightNewsApi.get("v3/blogs/", {
+
+  static async searchBySummary(query) {
+    const { data } = await SpaceFlightNewsApi.get("v3/blogs/", {
       params: {
         summary_contains: query,
       },
     });
+    return data;
   }
-  static searchByTitle(query) {
-    return SpaceFlightNewsApi.get("v3/blogs/", {
+
+  static async searchByTitle(query) {
+    const { data } = await SpaceFlightNewsApi.get("v3/blogs/", {
       params: {
         title_contains: query,
       },
     });
+    return data;
+  }
+
+  static async getMatching(query) {
+    const responses = await Promise.all([Blogs.searchByTitle(query), Blogs.searchBySummary(query)]);
+    return responses.flat();
   }
 }

@@ -1,10 +1,9 @@
-import * as React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { View } from "react-native";
 import NavigationBar from "./NavigationBar";
 import theme from "./theme";
 
-export default function Main() {
+const Main = () => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -19,4 +18,6 @@ export default function Main() {
       <NavigationBar />
     </View>
   );
-}
+};
+
+export default Main;

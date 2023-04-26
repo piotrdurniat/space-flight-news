@@ -9,16 +9,11 @@ import theme from "../theme";
 const ArticlesScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const allArticles = useQuery(["articles"], async () => {
-    const { data } = await Articles.getAll();
-    return data;
-  });
+  const allArticles = useQuery(["articles"], Articles.getAll);
 
-  const matchingArticles = useQuery(["matching-articles", searchQuery], async () => {
-    const { data: articlesByTitle } = await Articles.searchByTitle(searchQuery);
-    const { data: articlesBySummary } = await Articles.searchBySummary(searchQuery);
-    return [...articlesBySummary, ...articlesByTitle];
-  });
+  const matchingArticles = useQuery(["matching-articles", searchQuery], async () =>
+    Articles.getMatching(searchQuery)
+  );
 
   const onChangeSearch = query => setSearchQuery(query);
 
@@ -45,10 +40,12 @@ const ArticlesScreen = () => {
         onChangeText={onChangeSearch}
         value={searchQuery}
       />
-      {articles.isError && <Text>Error fetching articles.</Text>}
-
-      {articles.isLoading ? (
+      {articles.isError ? (
+        <Text>Error fetching articles.</Text>
+      ) : articles.isLoading ? (
         <Text>Loading...</Text>
+      ) : articles.data.length === 0 ? (
+        <Text>No articles found.</Text>
       ) : (
         articles.data.map((article, index) => <ArticleCard article={article} key={index} />)
       )}

@@ -9,16 +9,11 @@ import theme from "../theme";
 export default function ReportsScreen() {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const allReports = useQuery(["reports"], async () => {
-    const { data } = await Reports.getAll();
-    return data;
-  });
+  const allReports = useQuery(["reports"], Reports.getAll);
 
-  const matchingReports = useQuery(["matching-reports", searchQuery], async () => {
-    const { data: reportsByTitle } = await Reports.searchByTitle(searchQuery);
-    const { data: reportsBySummary } = await Reports.searchBySummary(searchQuery);
-    return [...reportsBySummary, ...reportsByTitle];
-  });
+  const matchingReports = useQuery(["matching-reports", searchQuery], async () =>
+    Reports.getMatching(searchQuery)
+  );
 
   const onChangeSearch = query => setSearchQuery(query);
 
@@ -45,10 +40,12 @@ export default function ReportsScreen() {
         onChangeText={onChangeSearch}
         value={searchQuery}
       />
-      {reports.isError && <Text>Error fetching reports.</Text>}
-
-      {reports.isLoading ? (
+      {reports.isError ? (
+        <Text>Error fetching reports.</Text>
+      ) : reports.isLoading ? (
         <Text>Loading...</Text>
+      ) : reports.data.length === 0 ? (
+        <Text>No reports found.</Text>
       ) : (
         reports.data.map((report, index) => <ReportCard report={report} key={index} />)
       )}
