@@ -6,12 +6,12 @@ export class Blogs {
     return data;
   }
 
-  static async getById(id) {
+  static async getById(id: string) {
     const { data } = await SpaceFlightNewsApi.get(`v3/blogs/${id}/`);
     return data;
   }
 
-  static async searchBySummary(query) {
+  static async searchBySummary(query: string) {
     const { data } = await SpaceFlightNewsApi.get("v3/blogs/", {
       params: {
         summary_contains: query,
@@ -20,7 +20,7 @@ export class Blogs {
     return data;
   }
 
-  static async searchByTitle(query) {
+  static async searchByTitle(query: string) {
     const { data } = await SpaceFlightNewsApi.get("v3/blogs/", {
       params: {
         title_contains: query,
@@ -29,7 +29,7 @@ export class Blogs {
     return data;
   }
 
-  static async getMatching(query) {
+  static async getMatching(query: string) {
     const responses = await Promise.all([Blogs.searchByTitle(query), Blogs.searchBySummary(query)]);
     return responses.flat();
   }

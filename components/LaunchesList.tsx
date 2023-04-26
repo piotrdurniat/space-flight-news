@@ -1,9 +1,14 @@
+import { FC } from "react";
 import { View } from "react-native";
 import { Text } from "react-native-paper";
 import { useQuery } from "react-query";
 import { Launches } from "../api/Launches";
 
-const LaunchesList = ({ launchIds }) => {
+interface Props {
+  launchIds: { id: string }[];
+}
+
+const LaunchesList: FC<Props> = ({ launchIds }) => {
   const ids = launchIds.map(({ id }) => id);
 
   const launches = useQuery(["launches", launchIds], async () => Launches.getByIds(ids));

@@ -10,6 +10,7 @@ import ArticlesScreen from "./Articles/ArticlesScreen";
 import BlogsScreen from "./Blogs/BlogsScreen";
 import ReportsScreen from "./Reports/ReportsScreen";
 import LaunchesScreen from "./Launches/LaunchesScreen";
+import { FC } from "react";
 
 //Screen names
 const launchesName = "Launches";
@@ -19,7 +20,7 @@ const reportsName = "Reports";
 
 const Tab = createBottomTabNavigator();
 
-function NavigationBar() {
+const NavigationBar: FC = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -54,6 +55,6 @@ function NavigationBar() {
       </Tab.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 export default NavigationBar;

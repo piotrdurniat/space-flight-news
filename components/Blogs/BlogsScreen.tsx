@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import { ScrollView } from "react-native";
 import { useQuery } from "react-query";
 import { Searchbar, Text } from "react-native-paper";
@@ -6,7 +6,7 @@ import { Blogs } from "../../api/Blogs";
 import BlogCard from "./BlogsCard";
 import theme from "../theme";
 
-const BlogsScreen = () => {
+const BlogsScreen: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const allBlogs = useQuery(["blogs"], Blogs.getAll);
@@ -14,8 +14,6 @@ const BlogsScreen = () => {
   const matchingBlogs = useQuery(["matching-blogs", searchQuery], async () =>
     Blogs.getMatching(searchQuery)
   );
-
-  const onChangeSearch = query => setSearchQuery(query);
 
   const blogs = useMemo(
     () => (searchQuery !== "" ? matchingBlogs : allBlogs),
@@ -37,7 +35,7 @@ const BlogsScreen = () => {
       <Searchbar
         style={{ marginBottom: 8 }}
         placeholder="Search"
-        onChangeText={onChangeSearch}
+        onChangeText={query => setSearchQuery(query)}
         value={searchQuery}
       />
       {blogs.isError ? (

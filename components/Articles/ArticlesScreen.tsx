@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import { ScrollView } from "react-native";
 import { useQuery } from "react-query";
 import { Searchbar, Text } from "react-native-paper";
@@ -6,7 +6,7 @@ import { Articles } from "../../api/Articles";
 import ArticleCard from "./ArticleCard";
 import theme from "../theme";
 
-const ArticlesScreen = () => {
+const ArticlesScreen: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const allArticles = useQuery(["articles"], Articles.getAll);
@@ -14,8 +14,6 @@ const ArticlesScreen = () => {
   const matchingArticles = useQuery(["matching-articles", searchQuery], async () =>
     Articles.getMatching(searchQuery)
   );
-
-  const onChangeSearch = query => setSearchQuery(query);
 
   const articles = useMemo(
     () => (searchQuery !== "" ? matchingArticles : allArticles),
@@ -37,7 +35,7 @@ const ArticlesScreen = () => {
       <Searchbar
         style={{ marginBottom: 8 }}
         placeholder="Search"
-        onChangeText={onChangeSearch}
+        onChangeText={setSearchQuery}
         value={searchQuery}
       />
       {articles.isError ? (
