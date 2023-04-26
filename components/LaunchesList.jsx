@@ -4,12 +4,9 @@ import { useQuery } from "react-query";
 import { Launches } from "../api/Launches";
 
 const LaunchesList = ({ launchIds }) => {
-  const launches = useQuery(["launches", launchIds], async () => {
-    const ids = launchIds.map(({ id }) => id);
-    const requests = ids.map(Launches.getById);
-    const responses = await Promise.all(requests);
-    return responses.filter(res => res !== undefined);
-  });
+  const ids = launchIds.map(({ id }) => id);
+
+  const launches = useQuery(["launches", launchIds], async () => Launches.getByIds(ids));
 
   return (
     <View>

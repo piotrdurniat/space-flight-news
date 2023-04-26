@@ -9,16 +9,11 @@ import theme from "../theme";
 export default function ReportsScreen() {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const allReports = useQuery(["reports"], async () => {
-    const { data } = await Reports.getAll();
-    return data;
-  });
+  const allReports = useQuery(["reports"], Reports.getAll);
 
-  const matchingReports = useQuery(["matching-reports", searchQuery], async () => {
-    const { data: reportsByTitle } = await Reports.searchByTitle(searchQuery);
-    const { data: reportsBySummary } = await Reports.searchBySummary(searchQuery);
-    return [...reportsBySummary, ...reportsByTitle];
-  });
+  const matchingReports = useQuery(["matching-reports", searchQuery], async () =>
+    Reports.getMatching(searchQuery)
+  );
 
   const onChangeSearch = query => setSearchQuery(query);
 

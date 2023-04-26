@@ -9,10 +9,12 @@ export class Launches {
     });
     return data;
   }
+
   static async getById(id) {
     const { data } = await LaunchLibraryApi.get(`2.2.0/launch/${id}`);
     return data;
   }
+
   static async search(query) {
     const { data } = await LaunchLibraryApi.get("2.2.0/launch/upcoming?mode=detailed", {
       params: {
@@ -20,5 +22,11 @@ export class Launches {
       },
     });
     return data;
+  }
+
+  static async getByIds(ids) {
+    const requests = ids.map(Launches.getById);
+    const responses = await Promise.all(requests);
+    return responses;
   }
 }
