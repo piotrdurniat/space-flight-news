@@ -4,8 +4,9 @@ Mobile application for viewing upcoming rocket launches and browsing new article
 
 ## Build with
 
-- JavaScript
 - React Native
+- Expo
+- TypeScript
 
 # Views
 
