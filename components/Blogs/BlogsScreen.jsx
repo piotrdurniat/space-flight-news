@@ -9,16 +9,11 @@ import theme from "../theme";
 const BlogsScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const allBlogs = useQuery(["blogs"], async () => {
-    const { data } = await Blogs.getAll();
-    return data;
-  });
+  const allBlogs = useQuery(["blogs"], Blogs.getAll);
 
-  const matchingBlogs = useQuery(["matching-blogs", searchQuery], async () => {
-    const { data: blogsByTitle } = await Blogs.searchByTitle(searchQuery);
-    const { data: blogsBySummary } = await Blogs.searchBySummary(searchQuery);
-    return [...blogsBySummary, ...blogsByTitle];
-  });
+  const matchingBlogs = useQuery(["matching-blogs", searchQuery], async () =>
+    Blogs.getMatching(searchQuery)
+  );
 
   const onChangeSearch = query => setSearchQuery(query);
 
@@ -26,8 +21,6 @@ const BlogsScreen = () => {
     () => (searchQuery !== "" ? matchingBlogs : allBlogs),
     [matchingBlogs, allBlogs]
   );
-
-  console.log(blogs);
 
   return (
     <ScrollView style={{ padding: 8, backgroundColor: theme.colors.background }}>
@@ -47,10 +40,30 @@ const BlogsScreen = () => {
         onChangeText={onChangeSearch}
         value={searchQuery}
       />
-      {blogs.isError && <Text>Error fetching blogs.</Text>}
-
-      {blogs.isLoading ? (
-        <Text>Loading...</Text>
+      {blogs.isError ? (
+        <Text
+          style={{
+            color: "white",
+          }}
+        >
+          Error fetching blogs.
+        </Text>
+      ) : blogs.isLoading ? (
+        <Text
+          style={{
+            color: "white",
+          }}
+        >
+          Loading...
+        </Text>
+      ) : blogs.data.length === 0 ? (
+        <Text
+          style={{
+            color: "white",
+          }}
+        >
+          No blogs found.
+        </Text>
       ) : (
         blogs.data.map((blog, index) => <BlogCard blog={blog} key={index} />)
       )}

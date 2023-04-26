@@ -5,25 +5,28 @@ import { Launches } from "../api/Launches";
 
 const LaunchesList = ({ launchIds }) => {
   const launches = useQuery(["launches", launchIds], async () => {
-    const res = [];
-    for (let { id } of launchIds) {
-      const { data } = await Launches.getById(id);
-      res.push(data);
-    }
-    return res;
+    const ids = launchIds.map(({ id }) => id);
+    const requests = ids.map(Launches.getById);
+    const responses = await Promise.all(requests);
+    return responses.filter(res => res !== undefined);
   });
-
-  if (launches.isError || launches.isLoading) return <View />;
 
   return (
     <View>
-      <Text variant="labelLarge" style={{ marginTop: 8 }}>
-        Launches
-      </Text>
-      {launches.data &&
-        launches.data.map(({ name }, index) => (
-          <Text variant="labelMedium" key={index}>{`\u2022 ${name}`}</Text>
-        ))}
+      {launches.isError ? (
+        <Text>Error fetching launches.</Text>
+      ) : launches.isLoading ? (
+        <Text>Loading...</Text>
+      ) : launches.data.length === 0 ? null : (
+        <>
+          <Text variant="labelLarge" style={{ marginTop: 8 }}>
+            Launches
+          </Text>
+          {launches.data.map((launch, index) => (
+            <Text variant="labelMedium" key={index}>{`\u2022 ${launch.name}`}</Text>
+          ))}
+        </>
+      )}
     </View>
   );
 };

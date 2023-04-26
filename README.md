@@ -1,20 +1,22 @@
-# PIM Projekt
+# Space Flight News
 
-Project structure
+Mobile application for viewing upcoming rocket launches and browsing new articles, blogs or reports about space flight.
+
+## Build with
+
+- JavaScript
+- React Native
 
 # Views
 
-1. Launches View
-2. Blogs View
-3. Reports View
-4. Articles View
+1. Launches
+2. Blogs
+3. Reports
+4. Articles
 
-Each of views will be contain info about rocket science. User will be have opportunity to move between views by navigation bar. Views are designed with figma tools. Mobile part will be written in react-native. Views are described in more detail in gitlab board.
+# Data Source
 
-# Structure
+APIs:
 
-Project will use two external APIs to get info. Communication between APIs and mobile app will be done using the http protocol.
-Api delivers info by endpoints, which reposones and requests are in json format.
-
-- Spaceflight News API: https://thespacedevs.com/llapi
-- Launch Library: https://ll.thespacedevs.com/2.2.0/swagger/
+- [Spaceflight News API](https://thespacedevs.com/llapi)
+- [Launch Library](https://ll.thespacedevs.com/2.2.0/swagger/)

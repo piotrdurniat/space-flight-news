@@ -1,17 +1,24 @@
 import LaunchLibraryApi from "./LaunchLibraryApi";
 
 export class Launches {
-  static getAllUpcoming() {
-    return LaunchLibraryApi.get("2.2.0/launch/upcoming?mode=detailed");
+  static async getAllUpcoming() {
+    const { data } = await LaunchLibraryApi.get("2.2.0/launch/upcoming/", {
+      params: {
+        mode: "detailed",
+      },
+    });
+    return data;
   }
-  static getById(id) {
-    return LaunchLibraryApi.get(`2.2.0/launch/${id}`);
+  static async getById(id) {
+    const { data } = await LaunchLibraryApi.get(`2.2.0/launch/${id}`);
+    return data;
   }
-  static search(query) {
-    return LaunchLibraryApi.get("2.2.0/launch/upcoming?mode=detailed", {
+  static async search(query) {
+    const { data } = await LaunchLibraryApi.get("2.2.0/launch/upcoming?mode=detailed", {
       params: {
         query: query,
       },
     });
+    return data;
   }
 }

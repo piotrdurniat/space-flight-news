@@ -45,10 +45,12 @@ export default function ReportsScreen() {
         onChangeText={onChangeSearch}
         value={searchQuery}
       />
-      {reports.isError && <Text>Error fetching reports.</Text>}
-
-      {reports.isLoading ? (
+      {reports.isError ? (
+        <Text>Error fetching reports.</Text>
+      ) : reports.isLoading ? (
         <Text>Loading...</Text>
+      ) : reports.data.length === 0 ? (
+        <Text>No reports found.</Text>
       ) : (
         reports.data.map((report, index) => <ReportCard report={report} key={index} />)
       )}

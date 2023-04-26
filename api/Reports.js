@@ -4,9 +4,11 @@ export class Reports {
   static getAll() {
     return SpaceFlightNewsApi.get("v3/reports/");
   }
+
   static getById(id) {
     return SpaceFlightNewsApi.get(`v3/reports/${id}`);
   }
+
   static searchBySummary(query) {
     return SpaceFlightNewsApi.get("v3/reports/", {
       params: {
@@ -14,6 +16,7 @@ export class Reports {
       },
     });
   }
+
   static searchByTitle(query) {
     return SpaceFlightNewsApi.get("v3/reports/", {
       params: {

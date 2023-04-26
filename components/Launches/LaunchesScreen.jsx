@@ -6,10 +6,7 @@ import LaunchesCard from "./LaunchesCard";
 import theme from "../theme";
 
 export default function LaunchesScreen() {
-  const launches = useQuery(["launches"], async () => {
-    const { data } = await Launches.getAllUpcoming();
-    return data;
-  });
+  const launches = useQuery(["launches"], Launches.getAllUpcoming);
 
   return (
     <ScrollView style={{ padding: 8, backgroundColor: theme.colors.background }}>
@@ -23,10 +20,12 @@ export default function LaunchesScreen() {
       >
         Launches
       </Text>
-      {launches.isError && <Text>Error fetching reports.</Text>}
-
-      {launches.isLoading ? (
+      {launches.isError ? (
+        <Text>Error fetching launches.</Text>
+      ) : launches.isLoading ? (
         <Text>Loading...</Text>
+      ) : launches.data.results.length === 0 ? (
+        <Text>No launches found.</Text>
       ) : (
         launches.data.results.map((launch, index) => <LaunchesCard launch={launch} key={index} />)
       )}
