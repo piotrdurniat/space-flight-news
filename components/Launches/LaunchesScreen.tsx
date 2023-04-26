@@ -19,7 +19,7 @@ const LaunchesScreen: FC = () => {
           paddingBottom: 8,
         }}
       >
-        Launches - test
+        Launches
       </Text>
       {launches.isError ? (
         <Text>Error fetching launches.</Text>
