@@ -12,6 +12,7 @@ const CountDownTimer: FC<Props> = ({ time }) => {
       until={timeInSec}
       size={18}
       digitStyle={{ backgroundColor: "none" }}
+      timeLabels={{ d: "", h: "", m: "", s: "" }}
       showSeparator
       separatorStyle={{ marginLeft: -30, marginRight: -30 }}
     />
