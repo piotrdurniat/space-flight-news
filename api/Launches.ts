@@ -1,8 +1,9 @@
+import { Launch } from "../types/Launch";
 import LaunchLibraryApi from "./LaunchLibraryApi";
 
 export class Launches {
   static async getAllUpcoming() {
-    const { data } = await LaunchLibraryApi.get("2.2.0/launch/upcoming/", {
+    const { data } = await LaunchLibraryApi.get<Launch[]>("2.2.0/launch/upcoming/", {
       params: {
         mode: "detailed",
       },
@@ -11,12 +12,12 @@ export class Launches {
   }
 
   static async getById(id: string) {
-    const { data } = await LaunchLibraryApi.get(`2.2.0/launch/${id}`);
+    const { data } = await LaunchLibraryApi.get<Launch>(`2.2.0/launch/${id}`);
     return data;
   }
 
   static async search(query: string) {
-    const { data } = await LaunchLibraryApi.get("2.2.0/launch/upcoming?mode=detailed", {
+    const { data } = await LaunchLibraryApi.get<Launch>("2.2.0/launch/upcoming?mode=detailed", {
       params: {
         query: query,
       },

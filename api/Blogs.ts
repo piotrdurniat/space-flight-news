@@ -1,18 +1,19 @@
+import { Blog } from "../types/Blog";
 import SpaceFlightNewsApi from "./SpaceFlightNewsApi";
 
 export class Blogs {
   static async getAll() {
-    const { data } = await SpaceFlightNewsApi.get("v3/blogs/");
+    const { data } = await SpaceFlightNewsApi.get<Blog[]>("v3/blogs/");
     return data;
   }
 
   static async getById(id: string) {
-    const { data } = await SpaceFlightNewsApi.get(`v3/blogs/${id}/`);
+    const { data } = await SpaceFlightNewsApi.get<Blog>(`v3/blogs/${id}/`);
     return data;
   }
 
   static async searchBySummary(query: string) {
-    const { data } = await SpaceFlightNewsApi.get("v3/blogs/", {
+    const { data } = await SpaceFlightNewsApi.get<Blog[]>("v3/blogs/", {
       params: {
         summary_contains: query,
       },
@@ -21,7 +22,7 @@ export class Blogs {
   }
 
   static async searchByTitle(query: string) {
-    const { data } = await SpaceFlightNewsApi.get("v3/blogs/", {
+    const { data } = await SpaceFlightNewsApi.get<Blog[]>("v3/blogs/", {
       params: {
         title_contains: query,
       },

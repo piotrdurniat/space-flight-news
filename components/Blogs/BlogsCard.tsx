@@ -3,8 +3,13 @@ import { Text, Button, Card, Title, Paragraph } from "react-native-paper";
 import Linking from "expo-linking";
 import { formatDate } from "../../util/formatter";
 import LaunchesList from "../LaunchesList";
+import { Blog } from "../../types/Blog";
 
-const BlogCard: FC = ({
+interface Props {
+  blog: Blog;
+}
+
+const BlogCard: FC<Props> = ({
   blog: { title, imageUrl, summary, publishedAt, updatedAt, url, launches },
 }) => {
   const updatedAtStr = formatDate(new Date(updatedAt));
