@@ -1,6 +1,5 @@
 import SpaceFlightNewsApi from "./SpaceFlightNewsApi";
 import { Article } from "../types/Article";
-import { AxiosResponse } from "axios";
 
 export class Articles {
   static async getAll() {

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import { ScrollView } from "react-native";
 import { useQuery } from "react-query";
 import { Searchbar, Text } from "react-native-paper";
@@ -6,7 +6,7 @@ import { Reports } from "../../api/Reports";
 import ReportCard from "./ReportCard";
 import theme from "../theme";
 
-export default function ReportsScreen() {
+const ReportsScreen: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const allReports = useQuery(["reports"], Reports.getAll);
@@ -14,8 +14,6 @@ export default function ReportsScreen() {
   const matchingReports = useQuery(["matching-reports", searchQuery], async () =>
     Reports.getMatching(searchQuery)
   );
-
-  const onChangeSearch = query => setSearchQuery(query);
 
   const reports = useMemo(
     () => (searchQuery !== "" ? matchingReports : allReports),
@@ -37,7 +35,7 @@ export default function ReportsScreen() {
       <Searchbar
         style={{ marginBottom: 8 }}
         placeholder="Search"
-        onChangeText={onChangeSearch}
+        onChangeText={setSearchQuery}
         value={searchQuery}
       />
       {reports.isError ? (
@@ -51,4 +49,6 @@ export default function ReportsScreen() {
       )}
     </ScrollView>
   );
-}
+};
+
+export default ReportsScreen;

@@ -1,18 +1,19 @@
+import { Report } from "../types/Report";
 import SpaceFlightNewsApi from "./SpaceFlightNewsApi";
 
 export class Reports {
   static async getAll() {
-    const { data } = await SpaceFlightNewsApi.get("v3/reports/");
+    const { data } = await SpaceFlightNewsApi.get<Report[]>("v3/reports/");
     return data;
   }
 
   static async getById(id: string) {
-    const { data } = await SpaceFlightNewsApi.get(`v3/reports/${id}`);
+    const { data } = await SpaceFlightNewsApi.get<Report>(`v3/reports/${id}`);
     return data;
   }
 
   static async searchBySummary(query: string) {
-    const { data } = await SpaceFlightNewsApi.get("v3/reports/", {
+    const { data } = await SpaceFlightNewsApi.get<Report[]>("v3/reports/", {
       params: {
         summary_contains: query,
       },
@@ -21,7 +22,7 @@ export class Reports {
   }
 
   static async searchByTitle(query: string) {
-    const { data } = await SpaceFlightNewsApi.get("v3/reports/", {
+    const { data } = await SpaceFlightNewsApi.get<Report[]>("v3/reports/", {
       params: {
         title_contains: query,
       },
