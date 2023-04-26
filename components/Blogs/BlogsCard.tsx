@@ -1,10 +1,16 @@
+import { FC } from "react";
 import { Text, Button, Card, Title, Paragraph } from "react-native-paper";
 import Linking from "expo-linking";
 import { formatDate } from "../../util/formatter";
 import LaunchesList from "../LaunchesList";
+import { Blog } from "../../types/Blog";
 
-const ArticleCard = ({
-  article: { title, imageUrl, summary, publishedAt, updatedAt, url, launches },
+interface Props {
+  blog: Blog;
+}
+
+const BlogCard: FC<Props> = ({
+  blog: { title, imageUrl, summary, publishedAt, updatedAt, url, launches },
 }) => {
   const updatedAtStr = formatDate(new Date(updatedAt));
   const publishedAtStr = formatDate(new Date(publishedAt));
@@ -17,12 +23,11 @@ const ArticleCard = ({
       <Card.Cover style={{ marginBottom: 16 }} source={{ uri: imageUrl }} />
       <Card.Content>
         <Paragraph>{summary}</Paragraph>
-        <Text
-          variant="labelMedium"
-          style={{ marginTop: 16 }}
-        >{`Published at: ${publishedAtStr}`}</Text>
-        <Text variant="labelMedium">{`Updated at: ${updatedAtStr}`}</Text>
-        {launches?.length !== 0 && <LaunchesList launchIds={launches} />}
+        <Text variant="labelMedium" style={{ marginTop: 16 }}>
+          Published at: {publishedAtStr}
+        </Text>
+        <Text variant="labelMedium">Updated at: {updatedAtStr}</Text>
+        {launches.length !== 0 && <LaunchesList launchIds={launches} />}
       </Card.Content>
       <Card.Actions>
         <Button onPress={() => Linking.openURL(url)}>Read more</Button>
@@ -31,4 +36,4 @@ const ArticleCard = ({
   );
 };
 
-export default ArticleCard;
+export default BlogCard;

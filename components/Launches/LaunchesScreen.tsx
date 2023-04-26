@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { ScrollView } from "react-native";
 import { useQuery } from "react-query";
 import { Text } from "react-native-paper";
@@ -5,7 +6,7 @@ import { Launches } from "../../api/Launches";
 import LaunchesCard from "./LaunchesCard";
 import theme from "../theme";
 
-export default function LaunchesScreen() {
+const LaunchesScreen: FC = () => {
   const launches = useQuery(["launches"], Launches.getAllUpcoming);
 
   return (
@@ -31,4 +32,6 @@ export default function LaunchesScreen() {
       )}
     </ScrollView>
   );
-}
+};
+
+export default LaunchesScreen;

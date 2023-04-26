@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Provider as PaperProvider } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -5,7 +6,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Main from "./components/Main";
 
 const queryClient = new QueryClient();
-export default function App() {
+
+const App: FC = () => {
   return (
     <SafeAreaProvider>
       <PaperProvider>
@@ -16,4 +18,6 @@ export default function App() {
       </PaperProvider>
     </SafeAreaProvider>
   );
-}
+};
+
+export default App;

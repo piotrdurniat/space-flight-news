@@ -3,15 +3,21 @@ import { StyleSheet } from "react-native";
 import Linking from "expo-linking";
 import { formatDate } from "../../util/formatter";
 import CountDownTimer from "./CountDownTimer";
+import { FC } from "react";
+import { Launch } from "../../types/Launch";
 
 const templateImgUrl =
   "https://images.unsplash.com/photo-1517976487492-5750f3195933?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
 
-const LaunchesCard = ({ launch: { name, pad, net, mission, rocket } }) => {
+interface Props {
+  launch: Launch["results"][number];
+}
+
+const LaunchesCard: FC<Props> = ({ launch: { name, pad, net, mission, rocket } }) => {
   const launchDate = new Date(net);
   const currentDate = new Date();
   const timeToStart = launchDate.getTime() - currentDate.getTime();
-  const imageUrl = rocket.configuration.manufacturer.image_url ?? templateImgUrl;
+  const imageUrl = rocket.configuration.manufacturer?.image_url ?? templateImgUrl;
   const mapUrl = pad.map_url;
   const wikiUrl = pad.wiki_url;
 

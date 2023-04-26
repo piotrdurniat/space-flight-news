@@ -1,9 +1,10 @@
+import { FC } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { View } from "react-native";
-import NavigationBar from "./NavigationBar";
 import theme from "./theme";
+import NavigationBar from "./NavigationBar";
 
-const Main = () => {
+const Main: FC = () => {
   const insets = useSafeAreaInsets();
 
   return (

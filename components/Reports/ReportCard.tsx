@@ -1,8 +1,16 @@
+import { FC } from "react";
 import { Text, Button, Card, Title, Paragraph } from "react-native-paper";
 import Linking from "expo-linking";
 import { formatDate } from "../../util/formatter";
+import { Report } from "../../types/Report";
 
-const ReportCard = ({ report: { title, imageUrl, summary, publishedAt, updatedAt, url } }) => {
+interface Props {
+  report: Report;
+}
+
+const ReportCard: FC<Props> = ({
+  report: { title, imageUrl, summary, publishedAt, updatedAt, url },
+}) => {
   const updatedAtStr = formatDate(new Date(updatedAt));
   const publishedAtStr = formatDate(new Date(publishedAt));
 
